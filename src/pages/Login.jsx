@@ -10,7 +10,7 @@ const Login = () => {
     return (
         < div className="min-h-screen flex items-center justify-center bg-blue-400" >
 
-            <div className="bg-white p-16 rounded shadow-2xl w-1/3">
+            <div className="bg-white p-16 rounded shadow-2xl w-2/3">
 
                 <a href="">
                     <Box className="justify-center text-2xl mb-10 flex flex-row space-x-3 items-center">
