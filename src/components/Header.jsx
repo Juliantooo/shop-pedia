@@ -9,7 +9,7 @@ import { SiShopify } from "react-icons/si"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { CgClose } from "react-icons/cg"
 
-const Header = ({handleToggleSidebar, isOpen}) => {
+const Header = ({handleToggleSidebar, isOpen,keywords,handleChange,handleKeydown}) => {
     return (
         <div className="w-full py-6 flex items-center flex-row justify-between px-3 md:px-12 space-x-2">
             <div className="block md:hidden">
@@ -21,7 +21,7 @@ const Header = ({handleToggleSidebar, isOpen}) => {
                         pointerEvents="none"
                         children={<Search2Icon color="blue.400" />}
                     />
-                    <Input borderRadius="full" type="text" placeholder="Cari Barang" borderColor="blue.400" />
+                    <Input borderRadius="full" onKeyDown={(e)=>handleKeydown(e.key)} value={keywords} onChange={(e)=>handleChange(e.target.value)} type="text" placeholder="Cari Barang" borderColor="blue.400" />
                 </InputGroup>
             </div>
             <div className="space-x-8">
