@@ -13,7 +13,7 @@ const parseResponse = (response)=>{
 export const http = (method, url='') => new Promise((resolve) => {
   axios({
     method,
-    url:`https://fakestoreapi.com/products`,
+    url:`https://fakestoreapi.com/products/${url}`,
   })
     .then((response) => {
       resolve(parseResponse(response));
