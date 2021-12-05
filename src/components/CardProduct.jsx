@@ -3,26 +3,16 @@ import { Image } from '@chakra-ui/image'
 import { Badge, Box } from '@chakra-ui/layout'
 import React from 'react'
 
-const CardProduct = (category,image,title,price,rating) => {
-    const property = {
-        imageUrl: "https://bit.ly/2Z4KKcF",
-        imageAlt: "Rear view of modern home with pool",
-        beds: 3,
-        baths: 2,
-        title: "Modern home in city center in the heart of historic Los Angeles",
-        formattedPrice: "Rp 200.900",
-        reviewCount: 34,
-        rating: 4,
-    }
+const CardProduct = ({id,category,image,title,price,rating,handleClick}) => {
     
       return (
-        <Box maxW="xs" className="shadow-lg cursor-pointer text-gray-600 " overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} w="100%" className="object-cover h-20 md:h-40" />
+        <Box maxW="xs" className="shadow-lg cursor-pointer text-gray-600" onClick={()=>handleClick(id)} overflow="hidden">
+          <Image src={image} alt="product" w="100%" className="object-contain h-20 md:h-40 bg-white bg-opacity-40" />
     
-          <Box p="3">
+          <Box p="3" className="space-y-2">
             <Box display="flex" alignItems="baseline">
               <Badge  px="2" colorScheme="yellow" textColor="black">
-                Terlaris
+                {category}
               </Badge>
             </Box>
     
@@ -33,12 +23,12 @@ const CardProduct = (category,image,title,price,rating) => {
               lineHeight="tight"
               isTruncated
             >
-              {property.title}
+              {title}
             </Box>
     
             <div className="flex flex-row justify-between items-center">
             <Box>
-              {property.formattedPrice}
+              $ {price}
             </Box>
     
             <Box display="flex" alignItems="center">
@@ -47,11 +37,11 @@ const CardProduct = (category,image,title,price,rating) => {
                 .map((_, i) => (
                   <StarIcon
                     key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
+                    color={i < rating.rate ? "teal.500" : "gray.300"}
                   />
                 ))}
               <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
+                {rating.count} reviews
               </Box>
             </Box>
             </div>
