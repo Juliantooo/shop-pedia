@@ -1,9 +1,7 @@
 import React from 'react'
-import shoppedia from '../assets/images/image1.png'
 import { Box } from '@chakra-ui/layout'
 import { Icon } from "@chakra-ui/react"
 import { SiShopify } from "react-icons/si"
-import { rules } from '../components/ValidationLogin';
 
 
 const Login = () => {
@@ -11,8 +9,7 @@ const Login = () => {
         < div className="min-h-screen flex items-center justify-center bg-blue-400" >
 
             <div className="bg-white p-16 rounded shadow-2xl w-2/3">
-
-                <a href="">
+                <a href="/">
                     <Box className="justify-center text-2xl mb-10 flex flex-row space-x-3 items-center">
                         <Icon as={SiShopify} w="35px" h="35px" color="blue.400" />
                         <p>Shop-Pedia</p>
