@@ -24,7 +24,6 @@ const Login = () => {
         if (username === 'admin' && password === 'admin123') {
             localStorage.setItem('authToken', 'admin-token');
             localStorage.setItem('username', username);
-            localStorage.setItem('role', 'admin')
             history.replace('/report')
             return;
         }
@@ -49,7 +48,6 @@ const Login = () => {
         }
         localStorage.setItem('authToken', response.data.token);
         localStorage.setItem('username', username);
-        localStorage.setItem('role', 'user')
         history.replace('/')
         setLoading(false)
     }
