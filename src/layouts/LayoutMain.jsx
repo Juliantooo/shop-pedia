@@ -54,7 +54,7 @@ const LayoutMain = ({ children }) => {
             {
                 isOpen && <Sidebar isOpen={isOpen} />
             }
-            <div className="w-full md:w-10/12">
+            <div className="w-full md:w-10/12 lg:w-10/12 xl:w-10/12">
                 <Header
                     handleToggleSidebar={handleToggleSidebar}
                     isOpen={isOpen}

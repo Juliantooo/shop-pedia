@@ -104,7 +104,7 @@ const Cart = () => {
 
 
     return (
-        <div className="w-full p-2 md:p-12 space-y-8 md:space-y-16">
+        <div className="w-full p-2 md:p-12 lg:p-12 xl:p-12 space-y-8 md:space-y-16 lg:space-y-16 xl:space-y-16">
             <h1 className="text-xl font-semibold text-gray-600">Cart</h1>
             <div className='flex flex-col lg:flex-row space-y-5 lg:space-y-0 lg:space-x-10'>
                 <div className="space-y-3 w-full lg:w-7/12">

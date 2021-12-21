@@ -49,7 +49,7 @@ const Header = ({ handleToggleSidebar, isOpen, keywords, handleChange, handleKey
                                         <p className='px-2 py-1 rounded-md bg-blue-200 cursor-pointer' onClick={handleLogout}>Logout</p>
                                     </div>
                                 }
-                                <div className="block md:hidden">
+                                <div className="block md:hidden lg:hidden xl:hidden">
                                     <Icon as={isOpen ? CgClose : GiHamburgerMenu} w="27px" h="27px" color="blue.400" onClick={handleToggleSidebar} />
                                 </div>
                             </Stack>
