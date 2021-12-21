@@ -3,44 +3,66 @@ import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import { useHistory } from "react-router-dom";
 
-const LayoutMain = ({children}) => {
+const LayoutMain = ({ children }) => {
     const history = useHistory()
     const [isOpen, setIsOpen] = useState(false);
     const [keywords, setKeywords] = useState('');
 
     const handleToggleSidebar = () => setIsOpen(!isOpen);
-    const handleChange=(value)=>{
+
+    const handleChange = (value) => {
         setKeywords(value)
     }
-    const handleKeydown=(key)=>{
-        if(key==='Enter'){
-            if(!keywords) return;
+
+    const handleKeydown = (key) => {
+        if (key === 'Enter') {
+            if (!keywords) return;
             history.push({
-                pathname:'/searched',
-                search:`?keywords=${keywords}`
+                pathname: '/searched',
+                search: `?keywords=${keywords}`
             });
             setKeywords('');
         }
     }
+
+    const handleClickCart = () => {
+        history.push({ pathname: '/cart' })
+    }
+
+    const handleClickBtnLogin = () => {
+        history.push({ pathname: '/login' })
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem('username')
+        localStorage.removeItem('authToken')
+        history.replace('/')
+    }
+
     const resize = (e) => e.srcElement.innerWidth > 1000 ? setIsOpen(true) : null
-    
+
+
     useEffect(() => {
-        if(window.innerWidth > 1000) setIsOpen(true)
+        if (window.innerWidth > 1000) setIsOpen(true)
         window.addEventListener('resize', resize)
     }, [])
-    
+
+
     return (
         <div className="w-full min-h-screen flex flex-row">
             {
-                isOpen && <Sidebar isOpen={isOpen}/>
+                isOpen && <Sidebar isOpen={isOpen} />
             }
             <div className="w-full md:w-10/12">
-                <Header 
-                    handleToggleSidebar={handleToggleSidebar} 
-                    isOpen={isOpen} 
-                    keywords={keywords} 
+                <Header
+                    handleToggleSidebar={handleToggleSidebar}
+                    isOpen={isOpen}
+                    keywords={keywords}
                     handleChange={handleChange}
                     handleKeydown={handleKeydown}
+                    handleClickCart={handleClickCart}
+                    handleClickBtnLogin={handleClickBtnLogin}
+                    handleLogout={handleLogout}
                 />
                 {children}
             </div>
