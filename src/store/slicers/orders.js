@@ -10,7 +10,9 @@ export const orderItems = createSlice({
     reducers: {
         ADD_ORDER_ITEMS: (state, action) => {
             const localOrders = JSON.parse(localStorage.getItem('orderItems'))
-            state.orderItems = localOrders;
+            if (localOrders) {
+                state.orderItems = localOrders;
+            }
             state.orderItems.push(action.payload);
             localStorage.setItem('orderItems', JSON.stringify(state.orderItems))
         }
