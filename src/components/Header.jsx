@@ -46,7 +46,7 @@ const Header = ({ handleToggleSidebar, isOpen, keywords, handleChange, handleKey
                                 {
                                     isShowLogout &&
                                     <div className='p-2 bg-blue-100 rounded-lg absolute right-11 top-3 md:right-3'>
-                                        <p className='px-2 py-1 rounded-md bg-blue-200' onClick={handleLogout}>Logout</p>
+                                        <p className='px-2 py-1 rounded-md bg-blue-200 cursor-pointer' onClick={handleLogout}>Logout</p>
                                     </div>
                                 }
                                 <div className="block md:hidden">
