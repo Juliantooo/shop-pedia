@@ -58,7 +58,6 @@ const PopularByCategory = ({ category }) => {
         <div className="space-y-5">
             <div className="flex flex-row justify-between items-center">
                 <h1 className="text-xl font-semibold text-gray-600">{category} Terpopuler</h1>
-                <Icon as={AiOutlinePlusCircle} w="24px" h="24px" color="blue.400" className="cursor-pointer" />
             </div>
             <Slider {...settings}>
                 {
