@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import routes from './router/routes';
 import UseLayout from './hooks/useLayout';
+import { ChakraProvider } from '@chakra-ui/react';
 import './assets/css/tailwind.css';
 
 function App() {
