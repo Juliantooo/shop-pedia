@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import LayoutMain from './layouts/LayoutMain';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import routes from './router/routes';
+import UseLayout from './hooks/useLayout';
 
 function App() {
   const loading = (
@@ -16,20 +16,24 @@ function App() {
     <ChakraProvider>
       <Router>
         <Suspense fallback={loading}>
-          <LayoutMain>
             <Switch>
               {
                 routes.map((route, idx) => {
                   return (
                     route.component && (
-                      <Route
-                        exact={route.exact} key={idx} path={route.path} name={route.name} render={props => <route.component {...props} />} />
+                        <UseLayout
+                          key={idx} 
+                          exact={route.exact}  
+                          path={route.path} 
+                          name={route.name}
+                          useLayout={route.useLayout}
+                          component={route.component}
+                        />
                     )
                   )
                 })
               }
             </Switch>
-          </LayoutMain>
         </Suspense>
       </Router>
     </ChakraProvider>
