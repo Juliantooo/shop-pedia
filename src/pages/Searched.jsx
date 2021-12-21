@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 import CardProduct from '../components/CardProduct';
-import useProducts from '../hooks/products';
 
-const GET = 'get';
 
 const Searched = () => {
     const { search } = useLocation();
     const history = useHistory();
     const keywords = search.split('=')[1];
-    const {products}=useProducts(GET);
+    const allProducts = useSelector(state => state.products.products);
     const [searchedProducts, setSearchedProducts] = useState([]);
 
     const handleClick=(id)=>{
-        history.push(`/product/${id}`);
+        history.push(`/${id}`);
     }
 
     
     useEffect(() => {
-        if(products.length>1){
-            const filteredProducts=products.filter((product)=>product.title.toLowerCase().includes(keywords.toLowerCase()))
-            setSearchedProducts(filteredProducts)
-        }
-    }, [products])
+        const filteredProducts=allProducts.filter((product)=>product.title.toLowerCase().includes(keywords.toLowerCase()))
+        setSearchedProducts(filteredProducts)
+    }, [allProducts])
 
     return (
         <div className="w-full p-2 md:p-12 space-y-8 md:space-y-16">
@@ -36,6 +33,7 @@ const Searched = () => {
             price={product.price} 
             rating={product.rating} 
             id={product.id}
+            stock={product.stock}
             handleClick={handleClick}
             />)    
             }
