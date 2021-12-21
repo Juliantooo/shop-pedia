@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import CardProduct from './CardProduct'
 import Slider from "react-slick";
 import '../assets/css/modules/reactSlick.css'
-import { AiOutlinePlusCircle } from "react-icons/ai"
-import Icon from '@chakra-ui/icon';
 import { http } from '../libs/services/http';
-import { useHistory } from "react-router-dom";
-import useProducts from '../hooks/products';
+import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
+import { randomNumber } from '../libs/helpers/randomNumber';
 
 const settings = {
     infinite: true,
@@ -35,43 +33,40 @@ const settings = {
     ]
 };
 
-const PopularByCategory = ({ category }) => {
-    const [products, setproducts] = useState([])
+
+const OtherProducts = () => {
+    const history = useHistory();
+    const [products, setProducts] = useState([])
     const allProducts = useSelector(state => state.products.products);
 
-    const history = useHistory()
+    const filterRandomProduct = () => {
+        const filteredProducts = allProducts.filter((product) => product.id < randomNumber(16, 24) && product.id > randomNumber(1, 8));
+        setProducts(filteredProducts)
+    }
 
     const handleClick = (id) => {
         history.push(`/${id}`);
     }
 
-    const filterProductsByCategory = () => {
-        const filteredProducts = allProducts.filter((product) => product.category === category);
-        setproducts(filteredProducts)
-    }
-
     useEffect(() => {
-        filterProductsByCategory()
+        filterRandomProduct()
     }, [allProducts])
 
     return (
         <div className="space-y-5">
-            <div className="flex flex-row justify-between items-center">
-                <h1 className="text-xl font-semibold text-gray-600">{category} Terpopuler</h1>
-                <Icon as={AiOutlinePlusCircle} w="24px" h="24px" color="blue.400" className="cursor-pointer" />
-            </div>
+            <h1 className="text-xl font-semibold text-gray-600">Others Products</h1>
             <Slider {...settings}>
                 {
                     products.length > 0 && products.map((product, idx) => {
                         return (
                             <div key={idx}>
                                 <CardProduct
+                                    id={product.id}
                                     category={product.category}
                                     image={product.image}
                                     title={product.title}
                                     price={product.price}
                                     rating={product.rating}
-                                    id={product.id}
                                     stock={product.stock}
                                     handleClick={handleClick}
                                 />
@@ -84,4 +79,4 @@ const PopularByCategory = ({ category }) => {
     )
 }
 
-export default PopularByCategory
+export default OtherProducts
