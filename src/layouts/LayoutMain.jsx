@@ -36,7 +36,8 @@ const LayoutMain = ({ children }) => {
     const handleLogout = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('authToken')
-        history.replace('/')
+        localStorage.removeItem('cartItems')
+        window.location.href = '/'
     }
 
     const resize = (e) => e.srcElement.innerWidth > 1000 ? setIsOpen(true) : null
