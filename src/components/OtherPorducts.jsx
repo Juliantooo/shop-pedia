@@ -4,16 +4,18 @@ import Slider from "react-slick";
 import '../assets/css/modules/reactSlick.css'
 import { http } from '../libs/services/http';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
+import { randomNumber } from '../libs/helpers/randomNumber';
 
 const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay:true,
-    arrows:false,
+    autoplay: true,
+    arrows: false,
     variableWidth: true,
-    responsive:[
+    responsive: [
         {
             breakpoint: 1024,
             settings: {
@@ -34,37 +36,39 @@ const settings = {
 
 const OtherProducts = () => {
     const history = useHistory();
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([])
+    const allProducts = useSelector(state => state.products.products);
 
-    const fetchData = async () =>{
-        const response = await http('get')
-        const data = response.data.filter((item,idx)=> {if(idx <= 8) return item})
-        setProducts(data)
+    const filterRandomProduct = () => {
+        const filteredProducts = allProducts.filter((product) => product.id < randomNumber(16, 24) && product.id > randomNumber(1, 8));
+        setProducts(filteredProducts)
     }
 
-    const handleClick=(id)=>{
-        history.push(`/product/${id}`);
+    const handleClick = (id) => {
+        history.push(`/${id}`);
     }
 
     useEffect(() => {
-        fetchData();
-    }, [])
+        filterRandomProduct()
+    }, [allProducts])
 
     return (
         <div className="space-y-5">
             <h1 className="text-xl font-semibold text-gray-600">Others Products</h1>
             <Slider {...settings}>
                 {
-                    products.length>0&&products.map((product,idx)=>{
+                    products.length > 0 && products.map((product, idx) => {
                         return (
                             <div key={idx}>
-                                <CardProduct 
-                                category={product.category} 
-                                image={product.image} 
-                                title={product.title} 
-                                price={product.price} 
-                                rating={product.rating} 
-                                handleClick={handleClick}
+                                <CardProduct
+                                    id={product.id}
+                                    category={product.category}
+                                    image={product.image}
+                                    title={product.title}
+                                    price={product.price}
+                                    rating={product.rating}
+                                    stock={product.stock}
+                                    handleClick={handleClick}
                                 />
                             </div>
                         )
