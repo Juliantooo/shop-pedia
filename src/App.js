@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import routes from './router/routes';
 import UseLayout from './hooks/useLayout';
-import './assets/css/tailwind.css';
 
 function App() {
   const loading = (

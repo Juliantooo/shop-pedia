@@ -70,7 +70,7 @@ const DetailProduct = () => {
         <div className="w-full p-2 md:p-8 space-y-8 md:space-y-16 max-w-full">
             <h1 className="text-xl font-semibold text-gray-600">Men's Cloth Products</h1>
             {product &&
-                <div className="flex flex-col md:flex-row items-center md:items-start space-y-5 md:space-y-0 md:space-x-10 justify-center">
+                <div className="flex flex-col md:flex-row items-center md:items-start space-y-5 md:space-y-0 md:space-x-10 justify-evenly">
                     <Box maxW='xs'>
                         <Image src={product.image} alt="product" className="object-containw-full bg-white bg-opacity-40" />
                     </Box>
