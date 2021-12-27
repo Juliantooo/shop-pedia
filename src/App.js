@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import routes from './router/routes';
 import UseLayout from './hooks/useLayout';
+import './index.css';
 
 function App() {
   const loading = (
@@ -16,24 +17,24 @@ function App() {
     <ChakraProvider>
       <Router>
         <Suspense fallback={loading}>
-            <Switch>
-              {
-                routes.map((route, idx) => {
-                  return (
-                    route.component && (
-                        <UseLayout
-                          key={idx} 
-                          exact={route.exact}  
-                          path={route.path} 
-                          name={route.name}
-                          useLayout={route.useLayout}
-                          component={route.component}
-                        />
-                    )
+          <Switch>
+            {
+              routes.map((route, idx) => {
+                return (
+                  route.component && (
+                    <UseLayout
+                      key={idx}
+                      exact={route.exact}
+                      path={route.path}
+                      name={route.name}
+                      useLayout={route.useLayout}
+                      component={route.component}
+                    />
                   )
-                })
-              }
-            </Switch>
+                )
+              })
+            }
+          </Switch>
         </Suspense>
       </Router>
     </ChakraProvider>
